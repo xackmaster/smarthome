@@ -1,0 +1,20 @@
+version: '2'
+services:
+    webapp:
+        image: majordomo
+        restart: always
+        ports:
+            - 7800:80
+        volumes:
+            - ../app:/var/www
+        depends_on:
+            - database
+    database:
+        image: mysql:5.7
+        volumes:
+            - ../app/db_terminal.sql:/docker-entrypoint-initdb.d/db-setup.sql
+        environment:
+            MYSQL_DATABASE: db_terminal
+            MYSQL_USER: majordomo
+            MYSQL_PASSWORD: majordomopwd
+            MYSQL_ROOT_PASSWORD: rootpwd
