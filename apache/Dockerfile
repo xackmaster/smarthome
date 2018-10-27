@@ -5,6 +5,8 @@ MAINTAINER Paranin Pavel <xackmaster@gmail.com>
 # Установка TZ для автоустановки (что бы не останавливалось)
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+ENV DEBIAN_FRONTEND noninteractive
+ENV TERM xterm
 
 # Предварительная установка утилит
 RUN apt-get update
@@ -14,15 +16,33 @@ RUN add-apt-repository ppa:ondrej/php
 
 # apache
 RUN apt-get update
-RUN apt-get -y install apache2 apache2-bin apache2-data apache2-utils
+RUN apt-get -y install apache2 apache2-bin # apache2-data apache2-utils
 # RUN apt-get -y install phpmyadmin libapache2-mod-php libapache2-mod-php7.0
+
+ADD apache2.conf /etc/apache2/sites-available/000-default.conf
+
+# Apache config 
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf 
+RUN apache2ctl configtest 
+COPY otpuskatame_backend.conf /etc/apache2/sites-available 
+RUN a2ensite otpuskatame_backend 
+RUN a2dissite 000-default 
+RUN rm /etc/apache2/sites-available/000-default.conf 
 
 # php
 RUN apt-get update
+RUN apt-get -y install php7.0-cgi php7.0 php7.0-xcache # php-pear
+RUN apt-get -y install curl libcurl3 libcurl3-dev
+RUN apt-get -y install libapache2-mod-php7.0
 RUN apt-get -y install php7.0-bz2 php7.0-cli php7.0-common php7.0-curl php7.0-gd php7.0-json php7.0-mbstring php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-readline php7.0-xml
+ADD php.ini /etc/php/5.6/apache2/conf.d/10-majordomo.ini
+ADD php.ini /etc/php/5.6/cli/conf.d/10-majordomo.ini
 
 # Apache config 
 RUN a2enmod rewrite
+
+VOLUME ["/var/www"]
+EXPOSE 80
 
 #ADD ondrejphp.list /etc/apt/sources.list.d/ondrejphp.list
 #RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E5267A6C
@@ -52,7 +72,7 @@ RUN a2enmod rewrite
 # Apache config 
 #RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf 
 #RUN apache2ctl configtest 
-# RUN a2dissite 000-default 
+#RUN a2dissite 000-default 
 #COPY otpuskatame_backend.conf /etc/apache2/sites-available 
 #RUN a2ensite otpuskatame_backend 
 #RUN a2dissite 000-default 
