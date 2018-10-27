@@ -1,0 +1,1 @@
+docker build https://github.com/xackmaster/smarthome.git#master:apache
