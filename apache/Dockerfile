@@ -2,7 +2,9 @@ FROM ubuntu:18.04
 
 MAINTAINER Paranin Pavel <xackmaster@gmail.com>
 
-
+# Установка TZ для автоустановки (что бы не останавливалось)
+ENV TZ=Europe/Moscow
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # apache
 RUN apt-get update
