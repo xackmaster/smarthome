@@ -22,7 +22,7 @@ bash -c "echo 'datasource_list: [ None ]' -s tee /etc/cloud/cloud.cfg.d/90_dpkg.
 apt purge -y cloud-init
 rm -Rf /etc/cloud /var/lib/cloud
 #Устанавливаю необходимые пакеты
-apt-get install -y git apache2 apache2-bin apache2-utils libapache2-mod-php7.2 php7.2-curl mysql-client mysql-server dbconfig-mysql php7.2-mbstring php7.2-mysql php-mysql ntpdate
+apt-get install -y git systemctl apache2 apache2-bin apache2-utils libapache2-mod-php7.2 php7.2-curl mysql-client mysql-server dbconfig-mysql php7.2-mbstring php7.2-mysql php-mysql ntpdate
 
 #NTP
 bash -c "echo '@reboot /usr/sbin/ntpdate -s 0.pool.ntp.org > /dev/null'" | -s tee /var/spool/cron/crontabs/root
