@@ -6,7 +6,7 @@ MAINTAINER Paranin Pavel <xackmaster@gmail.com>
 
 # apache
 RUN apt-get update
-RUN apt-get -y install apache2 apache2-bin apache2-data apache2-utils libapache2-mod-php libapache2-mod-php7.0
+RUN apt-get -y install phpmyadmin apache2 apache2-bin apache2-data apache2-utils libapache2-mod-php libapache2-mod-php7.0
 
 #ADD apache2.conf /etc/apache2/sites-available/000-default.conf
 
