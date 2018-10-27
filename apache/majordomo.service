@@ -1,0 +1,15 @@
+[Unit]
+Description=MajorDoMo
+
+[Service]
+Requires=mysql.service
+Requires=apache2.service
+Type=simple
+WorkingDirectory=/var/www
+ExecStart=/usr/bin/php /var/www/cycle.php
+Restart=always
+User=www-data
+Group=www-data
+
+[Install]
+WantedBy=multi-user.target
