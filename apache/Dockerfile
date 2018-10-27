@@ -8,7 +8,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # apache
 RUN apt-get update
-RUN apt-get -y install phpmyadmin apache2 apache2-bin apache2-data apache2-utils
+RUN apt-get -y install apache2 apache2-bin apache2-data apache2-utils
+# RUN apt-get -y install phpmyadmin libapache2-mod-php libapache2-mod-php7.0
 
 #ADD apache2.conf /etc/apache2/sites-available/000-default.conf
 
@@ -23,7 +24,7 @@ RUN apt-get -y install phpmyadmin apache2 apache2-bin apache2-data apache2-utils
 
 # php
 RUN apt-get update
-RUN apt-get -y install libapache2-mod-php libapache2-mod-php7.0 php7.0-bz2 php7.0-cli php7.0-common php7.0-curl php7.0-gd php7.0-json php7.0-mbstring php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-readline php7.0-xml
+RUN apt-get -y install php7.0-bz2 php7.0-cli php7.0-common php7.0-curl php7.0-gd php7.0-json php7.0-mbstring php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-readline php7.0-xml
 
 #ADD ondrejphp.list /etc/apt/sources.list.d/ondrejphp.list
 #RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E5267A6C
