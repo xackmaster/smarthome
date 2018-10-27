@@ -21,7 +21,6 @@ RUN apt-get -y install apache2 apache2-bin apache2-data apache2-utils
 RUN apt-get update
 RUN apt-get -y install php7.0-bz2 php7.0-cli php7.0-common php7.0-curl php7.0-gd php7.0-json php7.0-mbstring php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-readline php7.0-xml
 
-
 # Apache config 
 RUN a2enmod rewrite
 
