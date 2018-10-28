@@ -10,7 +10,7 @@ services:
     volumes:
       - ../md:/var/www/html
       - ../conf/php:/usr/local/etc/php
-      - ../conf/httpd:/usr/local/apache2/conf
+      - ../conf/httpd:/etc/apache2
       - ./src/sh:/usr/local/sh
   db:
     hostname: mydatasql_srv
