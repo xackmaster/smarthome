@@ -9,8 +9,8 @@ services:
       - 80:80
     volumes:
       - ../md:/var/www/html
-      - ./src/conf/php:/usr/local/etc/php
-      - ./src/conf/httpd:/usr/local/apache2/conf
+      - ../md/conf/php:/usr/local/etc/php
+      - ../md/conf/httpd:/usr/local/apache2/conf
       - ./src/sh:/usr/local/sh
   db:
     hostname: mydatasql_srv
@@ -34,7 +34,7 @@ services:
     ports:
       - 8080:80
     volumes:
-      - ./src/phpmyadmin:/www
+      - ../md/conf/phpmyadmin:/www
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOST=mydatasql_srv
