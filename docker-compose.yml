@@ -38,3 +38,8 @@ services:
       PMA_PASSWORD: QWERTY123!
     depends_on:
       - db
+  mqtt1:
+    image: eclipse-mosquitto:latest
+    container_name: mqtt1-iot
+    ports:
+      - 1883:1883
