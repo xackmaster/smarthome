@@ -31,7 +31,7 @@ services:
     image: phpmyadmin/phpmyadmin
     links: 
       - db:mydatasql_srv
-     container_name: mojordomo_phpmyadmin
+    container_name: mojordomo_phpmyadmin
     ports:
       - 8080:8080
     volumes:
