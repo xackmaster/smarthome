@@ -1,10 +1,10 @@
 version: '3'
 
 services:
-  web:
-    hostname: apahe_srv
-    image: php:7.0-apache
-    container_name: mojordomo_web
+  apahe:
+    hostname: apahe
+    image: php:7.2-apache
+    container_name: apahe
     ports:
       - 80:80
     volumes:
@@ -13,9 +13,9 @@ services:
       - ../conf/httpd:/etc/apache2
       - ./src/sh:/usr/local/sh
   db:
-    hostname: mydatasql_srv
+    hostname: db
     image: mysql:8.0
-    container_name: mojordomo_db
+    container_name: db
     ports:
       - 3306:3306
     volumes:
@@ -26,20 +26,18 @@ services:
       - MYSQL_PASSWORD=QWERTY123!
       - MYSQL_ROOT_PASSWORD=QWERTY123!
   phpmyadmin:
-    hostname: phpmyadmin_srv
+    hostname: phpmyadmin
     image: phpmyadmin/phpmyadmin
-    links: 
-      - db:db
-    container_name: mojordomo_phpmyadmin
+    container_name: phpmyadmin
     ports:
-      - 8080:80
+      - 8080:8080
     volumes:
       - ../conf/phpmyadmin:/www
     environment:
       - PMA_ARBITRARY=1
-      - PMA_HOST=mydatasql_srv
+      - PMA_HOST=db
       - PMA_PORT=3306
-      - PMA_USER=xackmaster
+      - PMA_USER=root
       - PMA_PASSWORD=QWERTY123!
     depends_on:
       - db
