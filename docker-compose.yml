@@ -2,6 +2,7 @@ version: '3'
 
 services:
   web:
+    hostname: apahe_srv
     image: php:7.2-apache
     ports:
       - 80:80
@@ -10,11 +11,29 @@ services:
       - ./src/conf/php/php.ini:/usr/local/etc/php/php.ini
       - ./src/conf/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
       - ./src/sh:/usr/local/sh
+  db:
+    hostname: mydatasql_srv
+    image: mysql:5.6
+    ports:
+      - 3306:3306
+    volumes:
+      - ./md-database:/var/lib/mysql   
+    environment:
+      MYSQL_DATABASE: db_mojordomo
+      MYSQL_USER: root
+      MYSQL_PASSWORD: QWERTY123!
+      MYSQL_ROOT_PASSWORD: QWERTY123!
+
   phpmyadmin:
+    hostname: phpmyadmin_srv
     image: phpmyadmin/phpmyadmin
     ports:
       - 8080:80
     environment:
+      PMA_HOST: mydatasql_srv
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: QWERTY123!
       MYSQL_ROOT_PASSWORD: QWERTY123!
     depends_on:
-      - web
+      - db
