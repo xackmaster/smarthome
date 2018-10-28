@@ -43,11 +43,3 @@ services:
       - PMA_PASSWORD=QWERTY123!
     depends_on:
       - db
-  mysqlclient:
-    hostname: mysqlclient_srv
-    image: arey/mysql-client
-    container_name: mojordomo_mysqlclient
-    ports:
-      - 100:100
-    depends_on:
-      - db
