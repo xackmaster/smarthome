@@ -6,4 +6,15 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./src:/var/www/html
+      - ./src/web:/var/www/html
+      - ./src/conf/php/php.ini:/usr/local/etc/php/php.ini
+      - ./src/conf/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./src/sh:~/sh
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8765:80
+    environment:
+      MYSQL_ROOT_PASSWORD: qwerty
+    depends_on:
+      - web
