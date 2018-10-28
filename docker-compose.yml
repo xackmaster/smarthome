@@ -28,6 +28,8 @@ services:
   phpmyadmin:
     hostname: phpmyadmin_srv
     image: phpmyadmin/phpmyadmin
+    links: 
+      - db:db
     container_name: mojordomo_phpmyadmin
     ports:
       - 8080:80
