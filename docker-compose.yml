@@ -14,7 +14,7 @@ services:
       - ./src/sh:/usr/local/sh
   db:
     hostname: mydatasql_srv
-    image: mysql:8.0
+    image: mysql:5.3
     container_name: mojordomo_db
     ports:
       - 3306:3306
