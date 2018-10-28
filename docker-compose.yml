@@ -3,7 +3,7 @@ version: '3'
 services:
   apahe:
     hostname: apahe
-    image: php:7.2-apache
+    image: php:5.3-apache
     container_name: apahe
     ports:
       - 80:80
