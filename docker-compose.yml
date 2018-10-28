@@ -1,7 +1,7 @@
 version: '2'
 services:
     webapp:
-        image: majordomo
+        image: apache:latest
         restart: always
         ports:
             - 7800:80
