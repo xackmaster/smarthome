@@ -28,16 +28,13 @@ services:
   phpmyadmin:
     hostname: phpmyadmin_srv
     image: phpmyadmin/phpmyadmin
-    links: 
-      - db:mydatasql_srv
     container_name: mojordomo_phpmyadmin
     ports:
-      - 8080:8080
+      - 8080:80
     volumes:
       - ./src/phpmyadmin:/www
     environment:
       - PMA_ARBITRARY = 1
-      - PMA_VERBOSE = mydatasql_srv
       - PMA_HOST = mydatasql_srv
       - PMA_PORT = 3306
       - PMA_USER = xackmaster
