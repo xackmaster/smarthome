@@ -9,7 +9,7 @@ services:
       - ./src/web:/var/www/html
       - ./src/conf/php/php.ini:/usr/local/etc/php/php.ini
       - ./src/conf/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
-      - ./src/sh:~/sh
+      - ./src/sh:/usr/local/sh
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
