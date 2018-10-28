@@ -9,9 +9,6 @@ services:
       - 80:80
     volumes:
       - ../md:/var/www/html
-      - ../conf/php:/usr/local/etc/php
-      - ../conf/httpd:/etc/apache2
-      - ./src/sh:/usr/local/sh
   db:
     hostname: db
     image: mysql:8.0
