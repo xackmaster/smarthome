@@ -21,7 +21,7 @@ services:
     volumes:
       - ../md-database:/var/lib/mysql
     environment:
-      - MYSQL_DATABASE=db_mojordomo
+      - MYSQL_DATABASE=db_terminal
       - MYSQL_USER=xackmaster
       - MYSQL_PASSWORD=QWERTY123!
       - MYSQL_ROOT_PASSWORD=QWERTY123!
