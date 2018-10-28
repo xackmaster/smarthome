@@ -1,20 +1,9 @@
-version: '2'
+version: '3'
+
 services:
-    webapp:
-        image: apache:latest
-        restart: always
-        ports:
-            - 7800:80
-        volumes:
-            - ../app:/var/www
-        depends_on:
-            - database
-    database:
-        image: mysql:5.7
-        volumes:
-            - ../app/db_terminal.sql:/docker-entrypoint-initdb.d/db-setup.sql
-        environment:
-            MYSQL_DATABASE: db_terminal
-            MYSQL_USER: majordomo
-            MYSQL_PASSWORD: majordomopwd
-            MYSQL_ROOT_PASSWORD: rootpwd
+  apache:
+    image: httpd:2.4
+    ports:
+      - 80:80
+    volumes:
+      - ./src:/usr/local/apache2/htdocs

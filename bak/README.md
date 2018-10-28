@@ -23,3 +23,6 @@ docker rm -f $(docker ps -a | grep "docker_" | awk '{print $1}')
 Запускаем с ключом -d (detached), считайте в режиме демона с именем majordomo-webserver, выставляя наружу порты 80, 443, 8001 и делая маппинг между папкой /md в материнской ОС и папкой /app внутри контейнера. 
 Если вы еще не знакомы с Docker, то вы увидите, как система скачивает образ webdevops/php-apache:alpine, состоящий из многих слоев. 
 Все в порядке. Вместе эти слои сформируют ваш образ, который затем можно использовать для многократного запуска контейнеров, давая каждому из них свои имена, параметры и прочее. 
+
+2) sudo docker run -d --name majordomo-database -p 3306:3306 -v /md-database:/app -e MYSQL_ROOT_PASSWORD=majordomo wangxian/alpine-
+mysql
