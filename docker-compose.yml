@@ -3,7 +3,7 @@ version: '3'
 services:
   apahe:
     hostname: apahe
-    image: php:5.3-apache
+    image: php:7.2-apache
     container_name: apahe
     ports:
       - 80:80
@@ -11,7 +11,7 @@ services:
       - ../md:/var/www/html
   db:
     hostname: db
-    image: mysql:8.0
+    image: mysql:5.7
     container_name: db
     ports:
       - 3306:3306
