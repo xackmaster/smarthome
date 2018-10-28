@@ -32,6 +32,8 @@ services:
     container_name: mojordomo_phpmyadmin
     ports:
       - 8080:80
+    volumes:
+      - ./src/phpmyadmin:/www
     environment:
       - PMA_ARBITRARY=1
       - PMA_VERBOSE=mydatasql_srv
