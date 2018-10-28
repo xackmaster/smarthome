@@ -3,7 +3,7 @@ version: '3'
 services:
   web:
     hostname: apahe_srv
-    image: php:7.0-apache
+    image: php:5.3-apache
     container_name: mojordomo_web
     ports:
       - 80:80
