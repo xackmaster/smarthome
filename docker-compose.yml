@@ -31,7 +31,7 @@ services:
     image: phpmyadmin/phpmyadmin
     container_name: mojordomo_phpmyadmin
     ports:
-      - 8080:80
+      - 8080:8080
     volumes:
       - ./src/phpmyadmin:/www
     environment:
