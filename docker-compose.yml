@@ -9,8 +9,8 @@ services:
       - 80:80
     volumes:
       - ./src/web:/var/www/html
-      - ./src/conf/php/php.ini:/usr/local/etc/php/php.ini
-      - ./src/conf/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./src/conf/php:/usr/local/etc/php
+      - ./src/conf/httpd:/usr/local/apache2/conf
       - ./src/sh:/usr/local/sh
   db:
     hostname: mydatasql_srv
@@ -21,10 +21,10 @@ services:
     volumes:
       - ./md-database:/var/lib/mysql   
     environment:
-      MYSQL_DATABASE: db_mojordomo
-      MYSQL_USER: xackmaster
-      MYSQL_PASSWORD: QWERTY123!
-      MYSQL_ROOT_PASSWORD: QWERTY123!
+      - MYSQL_DATABASE=db_mojordomo
+      - MYSQL_USER=xackmaster
+      - MYSQL_PASSWORD=QWERTY123!
+      - MYSQL_ROOT_PASSWORD=QWERTY123!
 
   phpmyadmin:
     hostname: phpmyadmin_srv
@@ -33,10 +33,11 @@ services:
     ports:
       - 8080:80
     environment:
-      PMA_HOST: mydatasql_srv
-      PMA_PORT: 3306
-      PMA_USER: xackmaster
-      PMA_PASSWORD: QWERTY123!
-      MYSQL_ROOT_PASSWORD: QWERTY123!
+      - PMA_ARBITRARY=1
+      - PMA_VERBOSE=mydatasql_srv
+      - PMA_HOST=mydatasql_srv
+      - PMA_PORT=3306
+      - PMA_USER=xackmaster
+      - PMA_PASSWORD=QWERTY123!
     depends_on:
       - db
